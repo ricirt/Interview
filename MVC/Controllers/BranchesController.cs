@@ -16,6 +16,12 @@ namespace MVC.Controllers
         {
             _branchService = branchService;
         }
+        [HttpGet]
+        public IActionResult AddBranch()
+        {
+
+            return View();
+        }
 
         [HttpPost]
         public IActionResult AddBranch(Branch branch)

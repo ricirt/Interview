@@ -8,22 +8,43 @@
 <div style="overflow-x:auto;">
     <table>
         <tr>
-            <th> Name</th>
-            <th>Surname</th>
-            <th>Mail</th>
-            <th>Phone</th>
-            <th>Branch Name</th>
+            <th>Department Id</th>
             <th>Department Name</th>
+
         </tr>
         <tbody>
             @foreach (var branch in Model)
             {
                 <tr>
-                    <td>@branch.</td>
-
+                    <td >@branch.BranchId</td>
+                    <td>@branch.BranchName</td>
+                    <td>
+                        <button class="btn-danger" id="btnDelete@(branch.BranchId)" onclick="deleteBranch(btnDelete@(branch.BranchId))">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
-
     </table>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+    function deleteBranch(id) {
+        var currentRow = $(id).closest("tr");
+        var id = currentRow.find("td:eq(0)").text();
+        
+        var branch = {
+            BranchId: id
+        };
+        $.ajax({
+            url: "/Branches/DeleteBranch",
+            type: "Post",
+            data: branch,
+            success: function () {
+                alert("Deleted successful");
+            }
+        })
+    }
+</script>
