@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+}
+
+<div style="display:flex; justify-content:center;">
+    <div>
+
+        ​<label class="col-form-label"><b>Department Name</b></label>
+        <input type="text" placeholder="Enter Department name" id="departmentName">
+    </div>
+    <div class="branches">
+        <select>
+            @foreach (var branch in ViewBag.Branches)
+            {
+                <option value="@branch.BranchId"> @branch.BranchName</option>
+            }
+        </select>
+    </div>
+
+</div>
+<div style="display:flex; justify-content:center;">
+    <button class="btn-outline-secondary" id="addDepartment">Add Department</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addDepartment").on("click", function () {
+            var branchId = $("div.branches select").val();
+            var name = $("#departmentName").val();
+            var department = {
+                DepartmentName: name,
+                BranchId: branchId
+            };
+            $.ajax({
+                url: "/Departments/AddDepartment",
+                data: department,
+                type: "Post",
+                success: function () {
+                    alert("successful");
+                }
+            })
+        })
+    })
+</script>

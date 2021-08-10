@@ -17,17 +17,24 @@ namespace MVC.Controllers
         {
             _locationService = locationService;
         }
-
+        public IActionResult AddDepartment()
+        {
+            ViewBag.Branches = _locationService.GetBranches();
+            return View();
+        }
         [HttpPost]
         public IActionResult AddDepartment(Department department)
         {
-            _locationService.Add(department);
+            if (ModelState.IsValid)
+                _locationService.Add(department);
+            ViewBag.Branches = _locationService.GetBranches();
             return View();
         }
         [HttpPost]
         public IActionResult UpdateDepartment(Department department)
         {
-            _locationService.Update(department);
+            if (ModelState.IsValid)
+                _locationService.Update(department);
             return View();
         }
         [HttpPost]
@@ -36,9 +43,10 @@ namespace MVC.Controllers
             _locationService.Delete(department);
             return View();
         }
-        public IActionResult GetDepartments()
+        public IActionResult DepartmentList()
         {
-            var departments =_locationService.GetAll();
+            
+            var departments =_locationService.GetDepartmentDetails();
             return View(departments);
         }
     }

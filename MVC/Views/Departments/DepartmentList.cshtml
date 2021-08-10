@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+        Layout = "_Layout";
+
+}
+
+@using Entity.Dtos;
+@model List<DepartmentDetails>
+
+<div>
+    <a class="btn btn-link" asp-area="" asp-controller="Departments" asp-action="AddDepartment">Add Department</a>
+</div>
+<div style="overflow-x:auto;">
+    <table>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+            <th>Branch Name</th>
+
+        </tr>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.DepartmentId</td>
+                    <td>@department.DepartmentName</td>
+                    <td>@department.BranchName
+                    <td>
+                        <button class="btn-danger" id="btnDelete@(department.DepartmentId)" onclick="deleteDepartment(btnDelete@(department.DepartmentId))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    function deleteDepartment(id) {
+        var currentRow = $(id).closest("tr");
+        var departmentId = currentRow.find("td:eq(0)").text();
+        alert(departmentId)
+        var department = {
+            DepartmentId: departmentId
+        };
+        $.ajax({
+            url: "/Departments/DeleteDepartment",
+            type: "Post",
+            data: department,
+            success: function () {
+                alert("Deleted successful");
+            }
+        });
+        location.reload();
+    }
+</script>

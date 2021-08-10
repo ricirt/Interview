@@ -19,13 +19,10 @@ namespace DataAccess.Concrete.EntitiyFramework
                 var users = from u in context.Users
                             join b in context.Branches
                             on u.BranchId equals b.BranchId
-                            join d in context.Locations
-                            on u.BranchId equals d.BranchId
                             select new UsersWtihLocation
                             {
                                 Email = u.Email,
                                 BranchName = b.BranchName,
-                                DepartmentName = d.DepartmentName,
                                 Name = u.Name,
                                 Phone = u.Phone,
                                 Surname = u.Surname,

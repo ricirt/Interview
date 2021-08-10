@@ -3,14 +3,16 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(LocationContext))]
-    partial class LocationContextModelSnapshot : ModelSnapshot
+    [Migration("20210810131553_addedDepartmentIdd")]
+    partial class addedDepartmentIdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,6 +65,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -78,6 +83,9 @@ namespace DataAccess.Migrations
                     b.HasKey("UserId");
 
                     b.HasIndex("BranchId")
+                        .IsUnique();
+
+                    b.HasIndex("DepartmentId")
                         .IsUnique();
 
                     b.ToTable("Users");
@@ -102,7 +110,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entity.Department", "Department")
+                        .WithOne("User")
+                        .HasForeignKey("Entity.User", "DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Branch");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("Entity.Branch", b =>
@@ -110,6 +126,11 @@ namespace DataAccess.Migrations
                     b.Navigation("Departments");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Entity.Department", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

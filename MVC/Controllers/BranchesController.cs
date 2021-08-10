@@ -26,13 +26,15 @@ namespace MVC.Controllers
         [HttpPost]
         public IActionResult AddBranch(Branch branch)
         {
-            _branchService.Add(branch);
+            if(ModelState.IsValid)
+                _branchService.Add(branch);
             return View();
         }
         [HttpPost]
         public IActionResult UpdateBranch(Branch branch)
         {
-            _branchService.Update(branch);
+            if (ModelState.IsValid)
+                _branchService.Update(branch);
             return View();
         }
         [HttpPost]

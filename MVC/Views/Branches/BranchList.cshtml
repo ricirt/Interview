@@ -5,6 +5,9 @@
 }
 @using Entity;
 @model List<Branch>
+    <div>
+        <a class="btn btn-link" asp-area="" asp-controller="Branches" asp-action="AddBranch">Add Department</a>
+    </div>
 <div style="overflow-x:auto;">
     <table>
         <tr>
@@ -33,10 +36,10 @@
     })
     function deleteBranch(id) {
         var currentRow = $(id).closest("tr");
-        var id = currentRow.find("td:eq(0)").text();
+        var branchId = currentRow.find("td:eq(0)").text();
         
         var branch = {
-            BranchId: id
+            BranchId: branchId
         };
         $.ajax({
             url: "/Branches/DeleteBranch",
@@ -46,5 +49,6 @@
                 alert("Deleted successful");
             }
         })
+        location.reload();
     }
 </script>

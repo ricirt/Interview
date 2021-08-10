@@ -11,6 +11,7 @@ namespace MVC.Controllers
     public class UsersController : Controller
     {
         IUserService _userService;
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -19,19 +20,28 @@ namespace MVC.Controllers
         [HttpGet]
         public IActionResult UserList()
         {
+
            var users = _userService.GetUsersWtihLocations();
             return View(users);
+        }
+        public IActionResult AddUser()
+        {
+            ViewBag.Branches = _userService.GetBranches();
+            return View();
         }
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-             _userService.Add(user);
+            ViewBag.Branches = _userService.GetBranches();
+            if (ModelState.IsValid)
+                _userService.Add(user);
             return View();
         }
         [HttpPost]
         public IActionResult UpdateUser(User user)
         {
-            _userService.Update(user);
+            if (ModelState.IsValid)
+                _userService.Update(user);
             return View();
         }
         [HttpPost]

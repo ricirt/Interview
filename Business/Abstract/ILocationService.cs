@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace Business.Abstract
         void Update(Department department);
         void Delete(Department department);
         Department GetById(int id);
+        public List<DepartmentDetails> GetDepartmentDetails();
+        public List<Branch> GetBranches();
     }
 }

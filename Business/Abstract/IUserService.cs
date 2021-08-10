@@ -16,5 +16,7 @@ namespace Business.Abstract
         void Delete(User user);
         User GetById(int id);
         List<UsersWtihLocation> GetUsersWtihLocations();
+        List<Branch> GetBranches();
+   
     }
 }

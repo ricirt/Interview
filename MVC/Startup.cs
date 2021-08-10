@@ -1,7 +1,10 @@
 using Business.Abstract;
+using Business.Caching;
+using Business.Caching.RedisCache;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntitiyFramework;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,14 +33,15 @@ namespace MVC
             //services.AddDbContext<LocationContext>(options =>
             //       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddSingleton<IUserService, UserManager>();
             services.AddSingleton<ILocationService, LocationManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
             services.AddSingleton<ILocationDal,  EfLocationDal>();
             services.AddSingleton<IBranchDal,  EfBranchDal>();
             services.AddSingleton<IBranchService,  BranchManger>();
-
+            services.AddSingleton<RedisServer>();
+            services.AddSingleton<ICacheService, RedisCacheService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +68,7 @@ namespace MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Branches}/{action=BranchList}/{id?}");
+                    pattern: "{controller=Users}/{action=UserList}/{id?}");
             });
         }
     }
