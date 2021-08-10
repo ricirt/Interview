@@ -3,20 +3,50 @@
 *@
 @{
 }
-<button id="GetUsers">
-    GetUsers
-</button>
+@using Entity.Dtos;
+@model List<UsersWtihLocation>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#GetUsers").on("click", function () {
-            $.ajax({
-                url: "/Home/GetAll",
-                type: "Get",
-                success: function () {
-                    alert("Başarılı");
-                }
-            });
+
+<div style="overflow-x:auto;">
+    <table>
+        <tr>
+            <th> Name</th>
+            <th>Surname</th>
+            <th>Mail</th>
+            <th>Phone</th>
+            <th>Branch Name</th>
+            <th>Department Name</th>
+        </tr>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Email</td>
+                    <td>@user.Phone</td>
+                    <td>@user.BranchName</td>
+                    <td>@user.DepartmentName</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+@*<button id="GetUsers">
+        GetUsers
+    </button>*@
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#GetUsers").on("click", function () {
+                $.ajax({
+                    url: "/Home/GetAll",
+                    type: "Get",
+                    success: function () {
+                        alert("Başarılı");
+                    }
+                });
+            })
         })
-    })
-</script>
+    </script>*@

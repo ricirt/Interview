@@ -18,14 +18,14 @@ namespace Business.Concrete
             _locationDal = locationDal;
         }
 
-        public void Add(Department location)
+        public void Add(Department department)
         {
-            _locationDal.Add(location);
+            _locationDal.Add(department);
         }
 
-        public void Delete(Department location)
+        public void Delete(Department department)
         {
-            _locationDal.Delete(location);
+            _locationDal.Delete(department);
         }
 
         public List<Department> GetAll()
@@ -38,9 +38,9 @@ namespace Business.Concrete
             return _locationDal.Get(l => l.DepartmentId == id);
         }
 
-        public void Update(Department location)
+        public void Update(Department department)
         {
-            _locationDal.Update(location);
+            _locationDal.Update(department);
         }
     }
 }

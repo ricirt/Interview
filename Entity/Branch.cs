@@ -10,7 +10,7 @@ namespace Entity
     {
         public int BranchId { get; set; }
         public string BranchName { get; set; }
-        public int DepartmentId { get; set; }
-        public Department Department{ get; set; }
+        public ICollection<Department> Departments{ get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

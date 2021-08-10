@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entity;
+using Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,12 @@ namespace Business.Concrete
 
         public User GetById(int id)
         {
-            return _userDal.Get(u => u.Id == id);
+            return _userDal.Get(u => u.UserId == id);
+        }
+
+        public List<UsersWtihLocation> GetUsersWtihLocations()
+        {
+            return _userDal.GetUsersWtihLocations();
         }
 
         public void Update(User user)

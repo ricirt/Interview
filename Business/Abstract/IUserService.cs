@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace Business.Abstract
         void Update(User user);
         void Delete(User user);
         User GetById(int id);
+        List<UsersWtihLocation> GetUsersWtihLocations();
     }
 }

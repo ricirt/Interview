@@ -3,14 +3,16 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(LocationContext))]
-    partial class LocationContextModelSnapshot : ModelSnapshot
+    [Migration("20210810073148_BranchTableUpdated")]
+    partial class BranchTableUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,12 +57,12 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchId")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -75,9 +77,10 @@ namespace DataAccess.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BranchId");
+                    b.HasIndex("DepartmentId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -95,19 +98,22 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.User", b =>
                 {
-                    b.HasOne("Entity.Branch", "Branch")
-                        .WithMany("Users")
-                        .HasForeignKey("BranchId")
+                    b.HasOne("Entity.Department", "Department")
+                        .WithOne("Users")
+                        .HasForeignKey("Entity.User", "DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Branch");
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("Entity.Branch", b =>
                 {
                     b.Navigation("Departments");
+                });
 
+            modelBuilder.Entity("Entity.Department", b =>
+                {
                     b.Navigation("Users");
                 });
 #pragma warning restore 612, 618

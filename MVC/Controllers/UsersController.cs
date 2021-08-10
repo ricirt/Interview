@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,30 @@ namespace MVC.Controllers
         {
             _userService = userService;
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult UserList()
         {
+           var users = _userService.GetUsersWtihLocations();
+            return View(users);
+        }
+        [HttpPost]
+        public IActionResult AddUser(User user)
+        {
+             _userService.Add(user);
             return View();
         }
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpPost]
+        public IActionResult UpdateUser(User user)
         {
-           var users = _userService.GetAll();
-            return View(users);
+            _userService.Update(user);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DeleteUser(User user)
+        {
+            _userService.Delete(user);
+            return View();
         }
     }
 }

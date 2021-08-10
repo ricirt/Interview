@@ -62,7 +62,7 @@ namespace MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Users}/{action=Index}/{id?}");
+                    pattern: "{controller=Users}/{action=UserList}/{id?}");
             });
         }
     }
