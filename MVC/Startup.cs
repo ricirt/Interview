@@ -35,6 +35,8 @@ namespace MVC
             services.AddSingleton<ILocationService, LocationManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
             services.AddSingleton<ILocationDal,  EfLocationDal>();
+            services.AddSingleton<IBranchDal,  EfBranchDal>();
+            services.AddSingleton<IBranchService,  BranchManger>();
 
         }
 
@@ -62,7 +64,7 @@ namespace MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Users}/{action=UserList}/{id?}");
+                    pattern: "{controller=Branches}/{action=BranchList}/{id?}");
             });
         }
     }

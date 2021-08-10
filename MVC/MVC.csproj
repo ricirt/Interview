@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Departments\" />
-    <Folder Include="Views\Branches\" />
   </ItemGroup>
 
 </Project>

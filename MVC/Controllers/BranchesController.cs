@@ -18,24 +18,24 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddDepartment(Branch branch)
+        public IActionResult AddBranch(Branch branch)
         {
             _branchService.Add(branch);
             return View();
         }
         [HttpPost]
-        public IActionResult UpdateDepartment(Branch branch)
+        public IActionResult UpdateBranch(Branch branch)
         {
             _branchService.Update(branch);
             return View();
         }
         [HttpPost]
-        public IActionResult DeleteDepartment(Branch branch)
+        public IActionResult DeleteBranch(Branch branch)
         {
             _branchService.Delete(branch);
             return View();
         }
-        public IActionResult GetDepartments()
+        public IActionResult BranchList()
         {
             var branches = _branchService.GetAll();
             return View(branches);

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MVC.Controllers
 {
-    public class DeaprtmentsController : Controller
+    public class DepartmentsController : Controller
     {
 
         ILocationService _locationService;
 
-        public DeaprtmentsController(ILocationService locationService)
+        public DepartmentsController(ILocationService locationService)
         {
             _locationService = locationService;
         }
