@@ -14,6 +14,6 @@ namespace Entity
         public string Email { get; set; }
         public string Phone { get; set; }
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public Department Department { get; set; }
     }
 }

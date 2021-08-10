@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Location:IEntity
+    public class Department:IEntity
     {
-        public int Id { get; set; }
-        public string Branch { get; set; }
-        public string Department { get; set; }
+        public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
         public User Users { get; set; }
+        public ICollection<Branch> Branches { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ILocationDal: IEntityRepositoryBase<Department>
+    public interface IBranchDal:IEntityRepositoryBase<Branch>
     {
     }
 }

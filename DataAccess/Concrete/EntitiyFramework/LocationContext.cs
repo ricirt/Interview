@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
 
 
         public DbSet<User> Users{ get; set; }
-        public DbSet<Location>Locations{ get; set; }
+        public DbSet<Department>Locations{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

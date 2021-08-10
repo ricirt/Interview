@@ -18,27 +18,27 @@ namespace Business.Concrete
             _locationDal = locationDal;
         }
 
-        public void Add(Location location)
+        public void Add(Department location)
         {
             _locationDal.Add(location);
         }
 
-        public void Delete(Location location)
+        public void Delete(Department location)
         {
             _locationDal.Delete(location);
         }
 
-        public List<Location> GetAll()
+        public List<Department> GetAll()
         {
             return _locationDal.GetAll();
         }
 
-        public Location GetById(int id)
+        public Department GetById(int id)
         {
-            return _locationDal.Get(l => l.Id == id);
+            return _locationDal.Get(l => l.DepartmentId == id);
         }
 
-        public void Update(Location location)
+        public void Update(Department location)
         {
             _locationDal.Update(location);
         }

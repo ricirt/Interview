@@ -9,10 +9,10 @@ namespace Business.Abstract
 {
     public interface ILocationService
     {
-        List<Location> GetAll();
-        void Add(Location location);
-        void Update(Location location);
-        void Delete(Location location);
-        Location GetById(int id);
+        List<Department> GetAll();
+        void Add(Department location);
+        void Update(Department location);
+        void Delete(Department location);
+        Department GetById(int id);
     }
 }

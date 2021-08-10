@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntitiyFramework
 {
-    public class EfLocationDal:EfEntityRepositoryBase<Department,LocationContext>,ILocationDal
+    public class EfBranchDal:EfEntityRepositoryBase<Branch, LocationContext>,IBranchDal
     {
-
     }
 }
